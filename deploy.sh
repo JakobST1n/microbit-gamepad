@@ -53,7 +53,6 @@ git add .
 git commit -m ":rocket: Deploy app v$VERSION"
 
 tput setaf 4
-<<<<<<< Updated upstream
 echo "> Return to main branch and tag last commit"
 tput sgr0
 
@@ -62,15 +61,5 @@ git checkout main
 #git tag "v$VERSION"
 
 git push -f origin main
-=======
-echo "> Return to main branch and tag last commit"
-tput sgr0
-
-git checkout main
-
-#git tag "v$VERSION"
-
-git push -f origin main
->>>>>>> Stashed changes
 #git push origin "v$VERSION"
 git push origin gh-pages
