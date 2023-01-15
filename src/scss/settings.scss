@@ -1,0 +1,136 @@
+/* Only show animations when user has not set a preference not to show motion */
+@media (prefers-reduced-motion: no-preference) {
+    .settings-dialog {
+        transition: all 0.5s ease;
+        
+        input[type="checkbox"]::before {
+            transition: 120ms transform ease-in-out;
+        }
+    }
+}
+
+.settings-dialog {
+    position: absolute;
+    background-color: $background-z2;
+    color: $foreground-z2;
+    top: 100%;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    z-index: 999;
+    box-sizing: border-box;
+    z-index: 1;
+    height: calc(100% - 40px);
+    flex-direction: column;
+
+    .header, .content { padding: 10px; }
+
+    &.shown {
+        display: flex;
+        top: 0;
+    }
+
+    button {
+        background-color: $background-z1;
+        color: $foreground-z1;
+        border: none;
+        width: fit-content;
+        height: fit-content;
+        font-size: 1.3em;
+    }
+
+    .header {
+        background-color: $background-z1;
+        display: flex;
+        box-sizing: border-box;
+        align-items: center;
+
+        button {
+            margin-left: auto;
+        }
+    }
+
+    select {
+        background: $background-z1;
+        color: $foreground-z1;
+        border: none;
+        padding: 5px;
+        display: block;
+
+    }
+
+    h1 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .content {
+        height: 100%;
+        overflow: auto;
+    }
+
+    form {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    
+    .form-control {
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+
+    .form-cb {
+        line-height: 1.1;
+        display: grid;
+        grid-template-columns: 1em auto;
+        gap: 0.5em;
+    }
+    
+    input[type="checkbox"] {
+        appearance: none;
+        background: $background-z1;
+        color: $foreground-z1;
+        margin: 0;
+    
+        font: inherit;
+        color: currentColor;
+        width: 1.15em;
+        height: 1.15em;
+        border: none;
+        border-radius: 0.15em;
+        transform: translateY(-0.075em);
+    
+        display: grid;
+        place-content: center;
+    }
+    
+    input[type="checkbox"]::before {
+        content: "";
+        width: 0.65em;
+        height: 0.65em;
+        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        transform: scale(0);
+        transform-origin: bottom left;
+        box-shadow: inset 1em 1em $foreground-z1;
+        /* Windows High Contrast Mode */
+        background-color: CanvasText;
+    }
+    
+    input[type="checkbox"]:checked::before {
+      transform: scale(1);
+    }
+    
+    input[type="checkbox"]:focus {
+      outline: max(2px, 0.15em) solid currentColor;
+      outline-offset: max(2px, 0.15em);
+    }
+    
+    input[type="checkbox"]:disabled {
+      --form-control-color: var(--form-control-disabled);
+    
+      color: var(--form-control-disabled);
+      cursor: not-allowed;
+    }
+}

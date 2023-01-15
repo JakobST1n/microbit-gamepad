@@ -1,0 +1,130 @@
+.statusline {
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    /* padding-left: 5px; */
+    width: calc(100%);
+    font-size: 12px;
+    margin: 0;
+    align-items: center;
+    z-index: 2;
+
+    background-color: $background-z1;
+    i {
+        font-size: 14px;
+        margin-right: 5px;
+    }
+
+    &-item {
+        display: none;
+        align-items: flex-start;
+        margin-left: 5px;
+        margin-right: 5px;
+        font-size: 13px;
+
+        color: $foreground-z1;
+
+        .connected & { display: flex; }
+    }
+
+    &-item:first-child {
+        margin-left: 10px;
+        margin-left: calc(env(safe-area-inset-left) + 10px);
+    }
+
+    &-item:last-child {
+        margin-right: 10px;
+        margin-right: calc(env(safe-area-inset-right) + 10px);
+    }
+}
+
+.connection {
+    display: flex;
+    color: $color-danger;
+
+    &:after {
+        display: block;
+        content: "DISCONNECTED";
+    }
+
+    .connected & { color: $color-success; }
+    .connected &:after {
+        display: block;
+        content: "CONNECTED";
+    }
+}
+
+.ping {
+    margin-left: auto;
+
+    i {
+        -webkit-animation: ping-fade-out 2s forwards; /* Safari 4+ */
+        -moz-animation:    ping-fade-out 2s forwards; /* Fx 2+ */
+        -o-animation:      ping-fade-out 2s forwards; /* Opera 12+ */
+        animation:         ping-fade-out 2s forwards; /* IE 10+, Fx 29+ */
+    }
+
+    @-webkit-keyframes ping-fade-out {
+      0%   { opacity: 1; }
+      100% { opacity: 0; }
+    }
+}
+
+.notification {
+    background-color: $background-z2;
+    color: $foreground-z2;
+    overflow: hidden;
+    display: flex;
+    align-items: baseline;
+
+    &-area {
+        background-color: $background-z2;
+        height: 100%;
+        width: 0;
+        overflow: hidden;
+        margin-left: 5px;
+        margin-left: auto;
+        transition: all 1s ease;
+    }
+
+    &-area.show {
+        width: 100%;
+    }
+
+    &-content {
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    i {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    i.alert   { color: $color-danger; }
+    i.info    { color: $color-info; }
+    i.success { color: $color-success; }
+    i.warning { color: $color-warning; }
+
+    p {
+        width: max-content;
+        -webkit-animation: scroll-text 10s linear forwards; /* Safari 4+ */
+        -moz-animation:    scroll-text 10s linear forwards; /* Fx 2+ */
+        -o-animation:      scroll-text 10s linear forwards; /* Opera 12+ */
+        animation:         scroll-text 10s linear forwards; /* IE 10+, Fx 29+ */
+    }
+
+    @-webkit-keyframes scroll-text {
+      0%   { margin-left:  100%; }
+      100% { margin-left: -100%; }
+    }
+
+    @-webkit-keyframes fade-in {
+      0%   { opacity: 1; }
+      100% { opacity: 0; }
+    }
+}

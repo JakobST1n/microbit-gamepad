@@ -1,0 +1,20 @@
+@import '@fortawesome/fontawesome-free/css/all.css';
+
+$background-base: #454545;
+$foreground-base: #9c9c9c;
+$background-z1: #333333;
+$foreground-z1: #b5b5b5;
+$background-z2: #252525;
+$foreground-z2: #b5b5b5;
+
+$color-danger: #c32222;
+$color-info: #0374a8;
+$color-success: #008000;
+$color-warning: #d99b0b;
+
+@import "main.scss";
+@import "statusline.scss";
+@import "settings.scss";
+@import "gamepad.scss";
+@import "landscape-warning.scss";
+
