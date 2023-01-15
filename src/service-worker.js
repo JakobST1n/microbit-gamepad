@@ -1,4 +1,4 @@
-var APP_PREFIX = 'hoverbitcontroller'     // Identifier for this app (this needs to be consistent across every cache update)
+var APP_PREFIX = 'microbitgamepad'     // Identifier for this app (this needs to be consistent across every cache update)
 var VERSION = '{{ VERSION }}'              // Version of the off-line cache (change this value everytime you want to update cache)
 var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = ["{{ CACHE_FILES }}"]  // This will be replaced by the deploy-script

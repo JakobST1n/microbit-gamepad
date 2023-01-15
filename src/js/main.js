@@ -6,7 +6,7 @@ import { Gamepad } from './gamepad';
 let sw = "service-worker.js";
 if (navigator.serviceWorker) {
     navigator.serviceWorker.register(
-        sw, {scope: '/hoverbit-ble/'}
+        sw, {scope: '/microbit-gamepad/'}
     ).then(registration => {
         registration.onupdatefound = () => {
             const installingWorker = registration.installing;
