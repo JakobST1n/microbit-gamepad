@@ -115,11 +115,15 @@ document.querySelector("#btn_hide_settings").addEventListener("click", () => {
 document.querySelector("#btn_disconnect").addEventListener("click", () => {
     ubit.disconnect();
 });
-document.getElementById("btn_connect").addEventListener("click", () => {
+document.getElementById("btn_connect").addEventListener("click", async () => {
     if (!navigator.bluetooth) {
         notif_alert("You need a bluetooth enabled browser for this app to work, try chrome.");
     }
-    ubit.searchDevice();
+    try {
+        await ubit.searchDevice();
+    } catch (e) {
+        notif_alert(`Could not connect to device: ${e}.`);
+    }
 });
 
 /* Handle gamepad events */
@@ -184,7 +188,14 @@ gamepad.onTouchEvent(e => {
         }
     }
     if ((ubit.isConnected()) && (event_value != null)) {
-        ubit.eventService.sendEvent(event_type, event_value);
+        ubit.sendEvent(event_type, event_value);
+    }
+
+    if ((e.id == "right") && e.hasOwnProperty("x")) {
+        ubit.sendUart(`x:${e.x}\n`);
+    }
+    if ((e.id == "left") && e.hasOwnProperty("y")) {
+        ubit.sendUart(`y:${e.y}\n`);
     }
 });
 
