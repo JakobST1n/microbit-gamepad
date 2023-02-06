@@ -147,6 +147,7 @@ gamepad.onTouchEvent(e => {
     document.querySelector(".button-states pre").innerHTML = debugString;
 });
 
+let gamepadJoysickState = {};
 gamepad.onTouchEvent(e => {
     const event_type = MESEvents.MES_DPAD_CONTROLLER_ID;
     let event_value = null;
@@ -191,11 +192,11 @@ gamepad.onTouchEvent(e => {
         ubit.sendEvent(event_type, event_value);
     }
 
-    if ((e.id == "right") && e.hasOwnProperty("x")) {
-        ubit.sendUart(`x:${e.x}\n`);
+    if (e.id == "right") {
+        gamepadJoysickState.x = e.x;
     }
-    if ((e.id == "left") && e.hasOwnProperty("y")) {
-        ubit.sendUart(`y:${e.y}\n`);
+    if (e.id == "left") {
+        gamepadJoysickState.y = e.y;
     }
 });
 
@@ -208,3 +209,15 @@ ubit.onDisconnect(() => {
     document.body.classList.remove("connected");
 });
 
+
+let i = 0;
+setInterval(() => {
+    if ((i==0) && gamepadJoysickState.hasOwnProperty("x")) {
+        ubit.sendUart(`x:${gamepadJoysickState.x}\n`);
+    }
+    if ((i==1) && gamepadJoysickState.hasOwnProperty("y")) {
+        ubit.sendUart(`y:${gamepadJoysickState.y}\n`);
+    }
+    i++;
+    if (i>1) { i = 0; }
+}, 20);
